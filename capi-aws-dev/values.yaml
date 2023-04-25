@@ -1,0 +1,15 @@
+clusterName: robolovo-dev
+
+region: us-west-2
+
+# control plane
+controlPlaneInstanceType: t3.medium
+controlPlaneReplicas: 1
+
+# worker node 
+workerNodeInstanceType: t3.medium
+workerNodeReplicas: 1
+
+sshKeyName: capi
+
+kubernetesVersion: 1.26.3

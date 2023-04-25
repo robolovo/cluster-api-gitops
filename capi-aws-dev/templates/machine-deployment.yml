@@ -1,0 +1,23 @@
+apiVersion: cluster.x-k8s.io/v1beta1
+kind: MachineDeployment
+metadata:
+  name: {{ .Values.clusterName }}-md-0
+  namespace: default
+spec:
+  clusterName: {{ .Values.clusterName }}
+  replicas: {{ .Values.workerNodeReplicas }}
+  selector:
+    matchLabels: null
+  template:
+    spec:
+      bootstrap:
+        configRef:
+          apiVersion: bootstrap.cluster.x-k8s.io/v1beta1
+          kind: KubeadmConfigTemplate
+          name: {{ .Values.clusterName }}-md-0
+      clusterName: {{ .Values.clusterName }}
+      infrastructureRef:
+        apiVersion: infrastructure.cluster.x-k8s.io/v1beta2
+        kind: AWSMachineTemplate
+        name: {{ .Values.clusterName }}-md-0
+      version: v{{ .Values.kubernetesVersion }}
