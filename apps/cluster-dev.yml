@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cluster-dev
+  namespace: argocd
+spec:
+  destination:
+    name: in-cluster
+    namespace: default
+  project: default
+  source:
+    path: capi-aws-dev
+    repoURL: https://github.com/robolovo/cluster-api-gitops.git
+    targetRevision: HEAD
